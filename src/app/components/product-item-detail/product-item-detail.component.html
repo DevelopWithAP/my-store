@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="item-detail">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>{{ product.price | currency: 'EUR' }}</p>
+    </div>
+    <img src="{{ product.url }}">
+    <form (ngSubmit)="addToCart(product, quantity)" #form="ngForm" class="my-3">
+        <input type="number" name="quantity" [(ngModel)]="quantity" min="1" class="mx-2">
+        <button type="submit" class="btn btn-sm btn-success">Add To Cart</button>
+    </form>
+</div>
