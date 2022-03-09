@@ -1,6 +1,6 @@
 .header {
     text-align: center;
-    background-color: lightskyblue;
+    background-color: navy;
     color: #fff;
     padding: 15px;
 }
@@ -8,4 +8,5 @@
 a {
     color: #ffffff;
     margin: 10px;
+    text-decoration: none;
 }

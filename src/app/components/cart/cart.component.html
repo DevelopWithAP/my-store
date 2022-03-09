@@ -3,15 +3,28 @@
     <div class="alert alert-info" *ngIf="items.length === 0">
         <p class="lead text-center">Your cart is empty </p>
     </div>
-    <div *ngFor="let item of items">
-        <div class="alert alert-secondary">
-            <!-- <img src="{{ item.url }}"> -->
-            <h5>{{ item.name }}</h5>
-            <p>{{ item.quantity }}</p>
-            <button class="btn btn-danger" type="submit" (click)="onRemove(item.id)"> <i class="fa fa-trash"></i> </button>
-        </div>
-
-
-    </div>
-    <p *ngIf="subtotal != 0">Subtotal: {{ subtotal | currency: 'EUR' }}</p>
+    <table class="table table-striped" *ngIf="items.length != 0">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <td>
+                    <img src="{{ item.url }}" class="image">
+                    <h5> {{ item.name }} </h5>
+                </td>
+                <td>{{ item.quantity }}</td>
+                <td> 
+                    <button class="btn btn-sm btn-danger" (click)="onRemove(item.id)"> <i class="fa fa-trash"></i> </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <span *ngIf="subtotal != 0">
+        <p>Subtotal: {{ subtotal | currency: 'EUR' }}</p>
+    </span>
 </div>

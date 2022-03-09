@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartItem } from 'src/Product';
 
 @Component({
   selector: 'app-navigation',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+  cartItems: CartItem[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-  }
+  };
 
 }

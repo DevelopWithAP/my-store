@@ -35,6 +35,11 @@ export class CartService {
       currentTotal += cartItem.price * cartItem.quantity;
     }
     return currentTotal;
+  };
+
+  clearCart(): CartItem[]  {
+    this.cartItems = [];
+    return this.getItems();
   }
 
   constructor() { }

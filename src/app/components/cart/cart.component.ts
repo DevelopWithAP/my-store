@@ -27,6 +27,10 @@ export class CartComponent implements OnInit {
     this.subtotal = this.cartService.getTotal();
   };
 
+  onClear(): void {
+    this.cartService.clearCart();
+    this.subtotal = this.cartService.getTotal();
+  };
   
   
 }
