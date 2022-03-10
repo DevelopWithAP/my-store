@@ -24,7 +24,10 @@
             </tr>
         </tbody>
     </table>
-    <span *ngIf="subtotal != 0">
-        <p>Subtotal: {{ subtotal | currency: 'EUR' }}</p>
-    </span>
+    <div *ngIf="subtotal != 0">
+        <p class="lead">Subtotal: {{ subtotal | currency: 'EUR' }}</p>
+        <hr>
+        <app-customer></app-customer>
+    </div>
+    
 </div>
