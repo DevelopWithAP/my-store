@@ -7,11 +7,15 @@ import { CartItem } from 'src/Product';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  cartItems: CartItem[] = [];
+  navbarOpen: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleNavbar(): void {
+    this.navbarOpen = !this.navbarOpen;
   };
 
 }

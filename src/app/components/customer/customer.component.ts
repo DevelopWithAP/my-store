@@ -15,7 +15,7 @@ export class CustomerComponent implements OnInit {
 
   @Output() registerCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
 
-  constructor() { 
+  constructor() {
     this.customer = {
       name: '',
       address: '',
