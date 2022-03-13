@@ -1,20 +1,20 @@
 <form [formGroup]="form" ngSubmit="onSubmit()">
-    <input type="text" id="name" class="form-control my-1" formControlName="name" placeholder="Name" required>
-    <div *ngIf="name.invalid && name.touched" class="alert alert-danger">
+    <input type="text" id="name" class="form-control my-2" formControlName="name" placeholder="Name" required>
+    <div *ngIf="name.invalid && name.touched" class="alert alert-danger mt-1">
         <div *ngIf="name.errors?.['required']">
             Name is required
         </div>
     </div>
 
-    <input type="address" id="address" class="form-control my-1" formControlName="address" placeholder="Address" required>
-    <div *ngIf="address.invalid && address.touched" class="alert alert-danger">
+    <input type="address" id="address" class="form-control my-2" formControlName="address" placeholder="Address" required>
+    <div *ngIf="address.invalid && address.touched" class="alert alert-danger mt-1">
         <div *ngIf="address.errors?.['required']">
             Address is required
         </div>
     </div>
 
-    <input type="text" id="cardNumber" class="form-control" formControlName="cardNumber" placeholder="Card Number" required minlength="16">
-    <div *ngIf="cardNumber.invalid && cardNumber.touched" class="alert alert-danger">
+    <input type="text" id="cardNumber" class="form-control my-2" formControlName="cardNumber" placeholder="Card Number" required minlength="16">
+    <div *ngIf="cardNumber.invalid && cardNumber.touched" class="alert alert-danger mt-1">
         <div *ngIf="cardNumber.errors?.['required']">
             Card Number is required
         </div>
@@ -23,4 +23,6 @@
             Card Number must be 16 digits long
         </div>
     </div>
+
+    <button class="btn btn-sm btn-primary" [disabled]="form.invalid" type="submit">Place Order</button>
 </form>
