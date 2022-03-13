@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Customer } from '../../../Customer';
+import { checkCard } from '../../../checkCard';
 
 @Component({
   selector: 'app-customer',
@@ -10,8 +11,7 @@ import { Customer } from '../../../Customer';
 export class CustomerComponent implements OnInit {
   form!: FormGroup;
   customer: Customer;
-  checkCard: boolean = true;
-  checkName: boolean = true;
+  validCardLength: number = 16;
 
   @Output() registerCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
 
@@ -27,16 +27,23 @@ export class CustomerComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      cardNumber: new FormControl('', [Validators.required]),
+      cardNumber: new FormControl('', [Validators.required, Validators.minLength(16)]),
     });
   };
 
-  get f() {
-    return this.form.controls;
-  }
+  get name() {
+    return this.form.get('name');
+  };
+
+  get address() {
+    return this.form.get('address');
+  };
+
+  get cardNumber() {
+    return this.form.get('cardNumber');
+  };
 
   onSubmit(): void {
     this.registerCustomer.emit(this.customer);
   };
-
 }
