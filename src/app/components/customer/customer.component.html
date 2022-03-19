@@ -1,28 +1,17 @@
-<form [formGroup]="form" ngSubmit="onSubmit()">
-    <input type="text" id="name" class="form-control my-2" formControlName="name" placeholder="Name" required>
-    <div *ngIf="name.invalid && name.touched" class="alert alert-danger mt-1">
-        <div *ngIf="name.errors?.['required']">
-            Name is required
-        </div>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <input type="text" name="name" id="name" class="form-control my-2" required [(ngModel)]="customer.name" placeholder="Name" #name="ngModel">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        Missing Name
     </div>
 
-    <input type="address" id="address" class="form-control my-2" formControlName="address" placeholder="Address" required>
-    <div *ngIf="address.invalid && address.touched" class="alert alert-danger mt-1">
-        <div *ngIf="address.errors?.['required']">
-            Address is required
-        </div>
+    <input type="text" name="address" id="address" class="form-control my-2" required [(ngModel)]="customer.address" placeholder="Address" #address="ngModel">
+    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+        Missing Address
     </div>
 
-    <input type="text" id="cardNumber" class="form-control my-2" formControlName="cardNumber" placeholder="Card Number" required minlength="16">
-    <div *ngIf="cardNumber.invalid && cardNumber.touched" class="alert alert-danger mt-1">
-        <div *ngIf="cardNumber.errors?.['required']">
-            Card Number is required
-        </div>
-
-        <div *ngIf="cardNumber.errors?.['minlength']">
-            Card Number must be 16 digits long
-        </div>
-    </div>
-
-    <button class="btn btn-sm btn-primary" [disabled]="form.invalid" type="submit">Place Order</button>
+<input type="text" name="cardNumber" id="cardNumber" class="form-control" required [(ngModel)]="customer.cardNumber" placeholder="Card Number (no spaces)" #cardNumber="ngModel" minlength="16" pattern="^[0-9]+$">
+<div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" class="alert alert-danger">
+    Missing or Invalid Card Number
+</div>
+    <button class="btn btn-sm btn-success btn-block my-2" [disabled]="!form.valid" type="submit">Place Order</button>
 </form>

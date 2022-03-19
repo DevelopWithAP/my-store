@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../../../Product';
 import { CartService } from '../../services/cart.service';
+import { Customer } from '../../../Customer';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,10 +13,16 @@ import { CartService } from '../../services/cart.service';
 export class CartComponent implements OnInit {
   items: CartItem[] = [];
   subtotal: number = 0;
+  customer: Customer;
 
   constructor(
-    private cartService: CartService,
-    ) { }
+    private cartService: CartService, private router: Router) {
+      this.customer = {
+        name: '',
+        address: '',
+        cardNumber: '', 
+      };
+    }
 
   ngOnInit(): void {
     this.items = this.cartService.getItems();
@@ -27,10 +35,9 @@ export class CartComponent implements OnInit {
     this.subtotal = this.cartService.getTotal();
   };
 
-  onClear(): void {
-    this.cartService.clearCart();
-    this.subtotal = this.cartService.getTotal();
+  onSubmitOrder(customer: Customer): void {
+    this.customer = customer;
+    this.router.navigate([`confirmation/${this.subtotal}/${this.customer.cardNumber}/${this.customer.name}`]);
   };
-  
   
 }

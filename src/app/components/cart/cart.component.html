@@ -27,7 +27,7 @@
     <div *ngIf="subtotal != 0">
         <p class="lead">Subtotal: {{ subtotal | currency: 'EUR' }}</p>
         <hr>
-        <app-customer></app-customer>
+        <app-customer (registerCustomer)="onSubmitOrder($event)"></app-customer>
     </div>
     
 </div>

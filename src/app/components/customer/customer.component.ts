@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Customer } from '../../../Customer';
 
 @Component({
@@ -8,8 +7,8 @@ import { Customer } from '../../../Customer';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  form!: FormGroup;
   customer: Customer;
+  submitted: boolean = false;
   validCardLength: number = 16;
 
   @Output() registerCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
@@ -22,27 +21,13 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      address: new FormControl('', [Validators.required]),
-      cardNumber: new FormControl('', [Validators.required, Validators.minLength(16)]),
-    });
+  ngOnInit(): void {  
   };
 
-  get name() {
-    return this.form.get('name');
-  };
 
-  get address() {
-    return this.form.get('address');
-  };
-
-  get cardNumber() {
-    return this.form.get('cardNumber');
-  };
 
   onSubmit(): void {
+    this.submitted = true;
     this.registerCustomer.emit(this.customer);
   };
 }
