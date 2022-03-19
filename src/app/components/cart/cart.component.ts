@@ -17,21 +17,33 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService, private router: Router) {
-      this.customer = {
-        name: '',
-        address: '',
-        cardNumber: '', 
-      };
-    }
+    this.customer = {
+      name: '',
+      address: '',
+      cardNumber: '',
+    };
+  }
 
   ngOnInit(): void {
     this.items = this.cartService.getItems();
     this.subtotal = this.cartService.getTotal();
   };
 
-  onRemove(id: number):void {
-    this.items = this.items.filter((prod)=> prod.id != id);
+  onRemove(id: number): void {
+    this.items = this.items.filter((prod) => prod.id != id);
     this.cartService.removeFromCart(id);
+    this.subtotal = this.cartService.getTotal();
+  };
+
+  onIncrease(id: number): void {
+    let item = this.items.filter((prod) => prod.id === id)[0];
+    item.quantity >= 1 ? item.quantity++ : null;
+    this.subtotal = this.cartService.getTotal(); 
+  };
+
+  onDecrease(id: number): void {
+    let item = this.items.filter((prod) => prod.id === id)[0];
+    item.quantity > 1 ? item.quantity-- : null;
     this.subtotal = this.cartService.getTotal();
   };
 
@@ -39,5 +51,5 @@ export class CartComponent implements OnInit {
     this.customer = customer;
     this.router.navigate([`confirmation/${this.subtotal}/${this.customer.cardNumber}/${this.customer.name}`]);
   };
-  
+
 }

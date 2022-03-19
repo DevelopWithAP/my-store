@@ -21,4 +21,8 @@ export class ConfirmationComponent implements OnInit {
     });
   };
 
+  getFirstName(): string {
+    return this.name!.split(' ')[0];
+  }
+
 }

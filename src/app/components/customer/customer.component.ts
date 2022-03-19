@@ -8,8 +8,6 @@ import { Customer } from '../../../Customer';
 })
 export class CustomerComponent implements OnInit {
   customer: Customer;
-  submitted: boolean = false;
-  validCardLength: number = 16;
 
   @Output() registerCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
 
@@ -24,10 +22,7 @@ export class CustomerComponent implements OnInit {
   ngOnInit(): void {  
   };
 
-
-
   onSubmit(): void {
-    this.submitted = true;
     this.registerCustomer.emit(this.customer);
   };
 }

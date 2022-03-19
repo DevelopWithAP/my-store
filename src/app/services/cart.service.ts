@@ -21,12 +21,14 @@ export class CartService {
     }
     else {
       this.cartItems.push({ ...product, quantity });
+
     }
-    window.alert(`${product.name} x ${quantity} added to cart`);
+    window.alert(`Added to cart`);
   }
 
   removeFromCart(id: number): void {
     this.cartItems = this.cartItems.filter((prod) => prod.id != id);
+    window.alert('Removed from cart.');
   };
 
   getTotal(): number {
@@ -36,11 +38,6 @@ export class CartService {
     }
     return currentTotal;
   };
-
-  clearCart(): CartItem[]  {
-    this.cartItems = [];
-    return this.getItems();
-  }
 
   constructor() { }
 }

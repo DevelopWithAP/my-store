@@ -17,7 +17,11 @@
                     <img src="{{ item.url }}" class="image">
                     <h5> {{ item.name }} </h5>
                 </td>
-                <td>{{ item.quantity }}</td>
+                <td>
+                    <button class="btn btn-sm" (click)="onIncrease(item.id)"> <i class="fa fa-plus"></i> </button>
+                   <span> {{ item.quantity }} </span>
+                    <button class="btn btn-sm" (click)="onDecrease(item.id)"> <i class="fa fa-minus"></i> </button>
+                </td>
                 <td> 
                     <button class="btn btn-sm btn-danger" (click)="onRemove(item.id)"> <i class="fa fa-trash"></i> </button>
                 </td>

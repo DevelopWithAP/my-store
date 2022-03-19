@@ -5,8 +5,8 @@
         <p>{{ product.price | currency: 'EUR' }}</p>
     </a>
     <form (ngSubmit)="addToCart()" #form="ngForm">
-        <input type="number" name="quantity" [(ngModel)]="quantity" min="1">
         <button class="btn btn-sm btn-primary mx-2" [disabled]="form.invalid || !quantity">Add To Cart</button>
+        <input type="number" name="quantity" [(ngModel)]="quantity" min="1">
     </form>
     
 </div>
