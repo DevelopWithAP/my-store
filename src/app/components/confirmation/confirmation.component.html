@@ -1,11 +1,12 @@
 <div class="container">
     <h3>Order Confirmed!</h3>
     <p class="lead">Thank you for shopping with us {{ getFirstName() }}</p>
+    <p>Your shipment is on the way. Please allow 3 - 5 working days</p>
     <a routerLink="/" class="btn btn-primary">Continue Shopping</a>
     <hr>
     <h5>Order Details</h5>
     <small>
         <p>Amount: {{ total | currency: 'EUR' }}</p>
-        <p>Card Number: {{ cardNumber }}</p>
+        <p>Card ending in: ****{{ cardNumber | slice:12  }}</p>
     </small>
 </div>
