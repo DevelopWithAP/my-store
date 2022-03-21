@@ -32,7 +32,6 @@ import { CustomerComponent } from './components/customer/customer.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    // ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

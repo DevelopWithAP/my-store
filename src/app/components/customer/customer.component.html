@@ -1,17 +1,29 @@
 <form (ngSubmit)="onSubmit()" #form="ngForm">
-    <input type="text" name="name" id="name" class="form-control my-2" required [(ngModel)]="customer.name" placeholder="Name" #name="ngModel">
-    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-        Missing Name
-    </div>
-
-    <input type="text" name="address" id="address" class="form-control my-2" required [(ngModel)]="customer.address" placeholder="Address" #address="ngModel">
-    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+    <input type="text" name="name" id="name" class="form-control my-2 ng-untouched ng-pristine ng-invalid" required [(ngModel)]="customer.name"
+        (ngModelChange)="customer.name = $event" placeholder="Name" #name="ngModel" minlength="3" pattern="^[a-zA-Z\s-]+$">
+        <div *ngIf="name.invalid && name.dirty && name.errors?.['required']" class="alert alert-danger">
+            Missing Name.
+        </div>
+        <div *ngIf="name.invalid && name.errors?.['minlength']" class="alert alert-danger">
+            Invalid Name Length
+        </div>
+    <input type="text" name="address" id="address" class="form-control my-2" required [(ngModel)]="customer.address"
+        (ngModelChange)="customer.address = $event" placeholder="Address" #address="ngModel" minlength="6">
+    <div *ngIf="address.invalid && address.touched && address.errors?.['required']" class="alert alert-danger">
         Missing Address
     </div>
+    <div *ngIf="address.invalid && address.touched && address.errors?.['minlength']" class="alert alert-danger">
+        Invalid Address Length
+    </div>
 
-<input type="text" name="cardNumber" id="cardNumber" class="form-control" required [(ngModel)]="customer.cardNumber" placeholder="Card Number (no spaces)" #cardNumber="ngModel" minlength="16" pattern="^[0-9]+$">
-<div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" class="alert alert-danger">
-    Missing or Invalid Card Number
-</div>
+    <input type="text" name="cardNumber" id="cardNumber" class="form-control" required
+        [(ngModel)]="customer.cardNumber" (ngModelChange)="customer.cardNumber = $event"
+        placeholder="Card Number (no spaces)" #cardNumber="ngModel" minlength="16" pattern="^[0-9]+$">
+    <div *ngIf="cardNumber.invalid && cardNumber.touched && cardNumber.errors?.['required']" class="alert alert-danger">
+        Missing Card Number
+    </div>
+    <div *ngIf="cardNumber.invalid && cardNumber.touched && cardNumber.errors?.['minlength']" class="alert alert-danger">
+        Expecting 16 digits.
+    </div>
     <button class="btn btn-sm btn-success btn-block my-2" [disabled]="!form.valid" type="submit">Place Order</button>
 </form>
