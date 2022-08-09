@@ -7,7 +7,7 @@ A single page application handling the front end of an e-commerce site.
 * ``Angular Router`` for routing and navigation.
 * ``RxJS`` for subscribing to Observables.
 * ``HttpClientModule`` for handling asynchronous calls.
-* ``node.js`` as a runtime environment.
+* ``Node.js`` as a runtime environment.
 * ``json server`` as a fake back-end.
 ## Set up and installation.
 All relevant dependencies can be installed using the ``npm`` package manager.
